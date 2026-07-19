@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Modrinth Glass</title>
+    <!-- Custom Font: Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Neon Blobs -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <!-- Glassmorphism Navbar -->
+    <nav class="glass-nav slide-down">
+        <div class="nav-brand">
+            <i class="fa-solid fa-microchip logo-icon"></i>
+            <span>Nexus<span style="font-weight:300;">AI</span></span>
+        </div>
+        
+        <ul class="nav-links">
+            <li><a href="#">Explore</a></li>
+            <li class="dropdown">
+                <a href="#">Server Tech <i class="fa-solid fa-chevron-down"></i></a>
+                <ul class="dropdown-menu glass-panel">
+                    <li><a href="#"><i class="fa-solid fa-bolt"></i> Optimization</a></li>
+                    <li><a href="#"><i class="fa-solid fa-shield-halved"></i> Security</a></li>
+                    <li><a href="#"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Generators</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Community</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <button class="btn glass-btn">Connect Server</button>
+        </div>
+    </nav>
+
+    <!-- AI Hero Section -->
+    <header class="hero">
+        <div class="hero-content fade-in-up">
+            <h1>Build a better server with <br><span id="typing-text" class="text-gradient"></span><span class="cursor">|</span></h1>
+            <p>Our AI analyzes your server logs to recommend the perfect mods and plugins.</p>
+            
+            <div class="main-search glass-panel bounce-in ai-glow">
+                <i class="fa-solid fa-sparkles" style="color: var(--brand-cyan)"></i>
+                <input type="text" id="hero-search" placeholder="Ask AI: 'Find me the best anti-cheat for 1.20'...">
+                <button class="btn primary-btn"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content Grid -->
+    <main class="container">
+        <h2 class="section-title reveal">AI Top Recommendations</h2>
+        <div class="grid">
+            <!-- Card 1 -->
+            <div class="glass-card reveal">
+                <div class="card-header">
+                    <div class="card-icon cyan-glow"><i class="fa-solid fa-bolt"></i></div>
+                    <h3>Lithium</h3>
+                </div>
+                <p>AI Rating: 99%. General-purpose server optimization mod. drastically improves server tick rates.</p>
+                <div class="card-footer">
+                    <span class="tag glass-panel">AI Pick</span>
+                    <span class="tag glass-panel">Fabric</span>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="glass-card reveal">
+                <div class="card-header">
+                    <div class="card-icon purple-glow"><i class="fa-solid fa-earth-americas"></i></div>
+                    <h3>Terralith</h3>
+                </div>
+                <p>AI Rating: 95%. Overhauls the overworld generation without adding any new blocks to your server.</p>
+                <div class="card-footer">
+                    <span class="tag glass-panel">WorldGen</span>
+                    <span class="tag glass-panel">Datapack</span>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="glass-card reveal">
+                <div class="card-header">
+                    <div class="card-icon pink-glow"><i class="fa-solid fa-shield-virus"></i></div>
+                    <h3>Vulcan</h3>
+                </div>
+                <p>AI Rating: 92%. Advanced packet-based anti-cheat system powered by machine learning heuristics.</p>
+                <div class="card-footer">
+                    <span class="tag glass-panel">Security</span>
+                    <span class="tag glass-panel">Spigot</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Floating AI Assistant -->
+    <div class="ai-widget">
+        <div id="ai-chat" class="ai-chat-window glass-panel hidden">
+            <div class="chat-header">
+                <i class="fa-solid fa-robot"></i> Server Assistant AI
+            </div>
+            <div class="chat-body">
+                <p class="ai-msg glass-panel">System online. Paste your server crash log or ask for plugin combinations.</p>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Type a command...">
+                <button><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <button id="ai-toggle-btn" class="ai-float-btn pulse-anim">
+            <i class="fa-solid fa-robot"></i>
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
