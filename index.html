@@ -1,124 +1,314 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Modrinth Glass</title>
-    <!-- Custom Font: Outfit -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Visual axGens tier YAML generator with Minecraft materials, formulas, holograms and live preview." />
+  <title>AxGens Tier Studio</title>
+  <link rel="preconnect" href="https://raw.githubusercontent.com" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <!-- Animated Neon Blobs -->
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <div class="noise"></div>
 
-    <!-- Glassmorphism Navbar -->
-    <nav class="glass-nav slide-down">
-        <div class="nav-brand">
-            <i class="fa-solid fa-microchip logo-icon"></i>
-            <span>Nexus<span style="font-weight:300;">AI</span></span>
-        </div>
-        
-        <ul class="nav-links">
-            <li><a href="#">Explore</a></li>
-            <li class="dropdown">
-                <a href="#">Server Tech <i class="fa-solid fa-chevron-down"></i></a>
-                <ul class="dropdown-menu glass-panel">
-                    <li><a href="#"><i class="fa-solid fa-bolt"></i> Optimization</a></li>
-                    <li><a href="#"><i class="fa-solid fa-shield-halved"></i> Security</a></li>
-                    <li><a href="#"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Generators</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Community</a></li>
-        </ul>
+  <header class="topbar glass-panel">
+    <a class="brand" href="#top" aria-label="AxGens Tier Studio home">
+      <span class="brand-cube" aria-hidden="true"><span></span></span>
+      <span>
+        <strong>AxGens</strong>
+        <small>Tier Studio</small>
+      </span>
+    </a>
 
-        <div class="nav-actions">
-            <button class="btn glass-btn">Connect Server</button>
-        </div>
+    <nav class="top-actions" aria-label="Main actions">
+      <button class="button button-ghost ripple" id="previewButton" type="button">
+        <span class="button-icon">&lt;/&gt;</span> Preview YAML
+      </button>
+      <button class="button button-primary ripple" id="downloadButton" type="button">
+        <span class="button-icon">⇩</span> Download YAML
+      </button>
     </nav>
+  </header>
 
-    <!-- AI Hero Section -->
-    <header class="hero">
-        <div class="hero-content fade-in-up">
-            <h1>Build a better server with <br><span id="typing-text" class="text-gradient"></span><span class="cursor">|</span></h1>
-            <p>Our AI analyzes your server logs to recommend the perfect mods and plugins.</p>
-            
-            <div class="main-search glass-panel bounce-in ai-glow">
-                <i class="fa-solid fa-sparkles" style="color: var(--brand-cyan)"></i>
-                <input type="text" id="hero-search" placeholder="Ask AI: 'Find me the best anti-cheat for 1.20'...">
-                <button class="btn primary-btn"><i class="fa-solid fa-arrow-right"></i></button>
-            </div>
+  <main id="top" class="app-shell">
+    <section class="hero reveal">
+      <div class="eyebrow"><span></span> Visual generator configuration</div>
+      <h1>Build every generator tier<br /><em>without touching YAML.</em></h1>
+      <p>Configure materials, progression formulas, drops and holograms. The generated file follows the uploaded <code>tiers.yml</code> structure.</p>
+
+      <div class="hero-stats">
+        <div class="mini-card clay-card">
+          <span>Tier count</span>
+          <strong id="heroTierCount">5</strong>
         </div>
-    </header>
-
-    <!-- Content Grid -->
-    <main class="container">
-        <h2 class="section-title reveal">AI Top Recommendations</h2>
-        <div class="grid">
-            <!-- Card 1 -->
-            <div class="glass-card reveal">
-                <div class="card-header">
-                    <div class="card-icon cyan-glow"><i class="fa-solid fa-bolt"></i></div>
-                    <h3>Lithium</h3>
-                </div>
-                <p>AI Rating: 99%. General-purpose server optimization mod. drastically improves server tick rates.</p>
-                <div class="card-footer">
-                    <span class="tag glass-panel">AI Pick</span>
-                    <span class="tag glass-panel">Fabric</span>
-                </div>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="glass-card reveal">
-                <div class="card-header">
-                    <div class="card-icon purple-glow"><i class="fa-solid fa-earth-americas"></i></div>
-                    <h3>Terralith</h3>
-                </div>
-                <p>AI Rating: 95%. Overhauls the overworld generation without adding any new blocks to your server.</p>
-                <div class="card-footer">
-                    <span class="tag glass-panel">WorldGen</span>
-                    <span class="tag glass-panel">Datapack</span>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="glass-card reveal">
-                <div class="card-header">
-                    <div class="card-icon pink-glow"><i class="fa-solid fa-shield-virus"></i></div>
-                    <h3>Vulcan</h3>
-                </div>
-                <p>AI Rating: 92%. Advanced packet-based anti-cheat system powered by machine learning heuristics.</p>
-                <div class="card-footer">
-                    <span class="tag glass-panel">Security</span>
-                    <span class="tag glass-panel">Spigot</span>
-                </div>
-            </div>
+        <div class="mini-card clay-card">
+          <span>Data source</span>
+          <strong id="dataStatus">Connecting…</strong>
         </div>
-    </main>
-
-    <!-- Floating AI Assistant -->
-    <div class="ai-widget">
-        <div id="ai-chat" class="ai-chat-window glass-panel hidden">
-            <div class="chat-header">
-                <i class="fa-solid fa-robot"></i> Server Assistant AI
-            </div>
-            <div class="chat-body">
-                <p class="ai-msg glass-panel">System online. Paste your server crash log or ask for plugin combinations.</p>
-            </div>
-            <div class="chat-input">
-                <input type="text" placeholder="Type a command...">
-                <button><i class="fa-solid fa-paper-plane"></i></button>
-            </div>
+        <div class="mini-card clay-card">
+          <span>Output</span>
+          <strong>axGens YAML</strong>
         </div>
-        <button id="ai-toggle-btn" class="ai-float-btn pulse-anim">
-            <i class="fa-solid fa-robot"></i>
-        </button>
+      </div>
+    </section>
+
+    <section class="workspace reveal">
+      <aside class="sidebar glass-panel">
+        <div class="tier-control">
+          <label for="tierCount">Number of tiers</label>
+          <div class="number-stepper clay-inset">
+            <button type="button" id="tierMinus" aria-label="Decrease tiers">−</button>
+            <input id="tierCount" type="number" min="1" max="100" value="5" />
+            <button type="button" id="tierPlus" aria-label="Increase tiers">+</button>
+          </div>
+          <small>Continuous integer tiers from 1 to 100.</small>
+        </div>
+
+        <div class="section-nav" role="tablist" aria-label="Configuration categories">
+          <button class="section-tab active" type="button" data-section="generator" role="tab">
+            <span class="tab-number">01</span>
+            <span><strong>Generator Item</strong><small>Material, naming and scaling</small></span>
+          </button>
+          <button class="section-tab" type="button" data-section="drops" role="tab">
+            <span class="tab-number">02</span>
+            <span><strong>Drop Item</strong><small>Items and sell prices</small></span>
+          </button>
+          <button class="section-tab" type="button" data-section="hologram" role="tab">
+            <span class="tab-number">03</span>
+            <span><strong>Hologram</strong><small>Display and placeholders</small></span>
+          </button>
+        </div>
+
+        <div class="sidebar-note clay-card">
+          <span class="status-dot"></span>
+          <div>
+            <strong>Live calculation</strong>
+            <p>Tier values and YAML refresh as you type.</p>
+          </div>
+        </div>
+      </aside>
+
+      <div class="config-area">
+        <!-- Generator item -->
+        <section class="config-section active" id="section-generator" data-section-panel="generator">
+          <div class="section-heading">
+            <div><span>Category 01</span><h2>Generator Item</h2></div>
+            <p>Configure the generator block, shop behavior and tier progression.</p>
+          </div>
+
+          <div class="card-grid two-col">
+            <article class="config-card glass-panel hover-lift">
+              <div class="card-title"><span class="icon-box">⚙</span><div><h3>Shop options</h3><p>Boolean options written to every tier.</p></div></div>
+              <div class="toggle-row">
+                <span><strong>Remove from shop</strong><small>Hide this tier in the generator shop.</small></span>
+                <label class="switch"><input id="removeFromShop" type="checkbox" /><span></span></label>
+              </div>
+              <div class="toggle-row">
+                <span><strong>Allow buying</strong><small>Allow players to purchase this generator.</small></span>
+                <label class="switch"><input id="allowBuying" type="checkbox" checked /><span></span></label>
+              </div>
+            </article>
+
+            <article class="config-card glass-panel hover-lift">
+              <div class="card-title"><span class="icon-box">◈</span><div><h3>Generator material</h3><p>Uses modern Bukkit/Paper material IDs.</p></div></div>
+              <button class="material-select clay-card ripple" id="generatorMaterialButton" type="button" data-picker="generator">
+                <span class="material-thumb checker"><img id="generatorMaterialImage" alt="" /></span>
+                <span class="material-copy"><small>Selected block</small><strong id="generatorMaterialName">Hay Block</strong><code id="generatorMaterialId">HAY_BLOCK</code></span>
+                <span class="select-arrow">›</span>
+              </button>
+              <p class="source-note">Block and item metadata are loaded from PrismarineJS <strong>minecraft-data</strong>; textures are loaded from <strong>minecraft-assets</strong>.</p>
+            </article>
+          </div>
+
+          <article class="config-card glass-panel hover-lift">
+            <div class="card-title"><span class="icon-box">Aa</span><div><h3>Generator name</h3><p>Choose an automatic drop-based name or enter a custom prefix.</p></div></div>
+            <div class="segmented" data-segment-group="nameMode">
+              <button class="active ripple" type="button" data-value="drop">Use drop item name</button>
+              <button class="ripple" type="button" data-value="custom">Custom name</button>
+            </div>
+            <div class="name-builder" id="customNameWrap" hidden>
+              <input id="customGeneratorName" type="text" value="&#FFCC00&lWHEAT" placeholder="Name or formatted name" />
+              <span>Generator</span>
+            </div>
+            <div class="inline-preview clay-inset"><span>Result</span><code id="generatorNamePreview">&#FFCC00&lWHEAT GENERATOR</code></div>
+          </article>
+
+          <div class="card-grid two-col">
+            <article class="config-card glass-panel hover-lift">
+              <div class="card-title"><span class="icon-box">↗</span><div><h3>Level requirement</h3><p>Exponential hardness progression.</p></div></div>
+              <label class="field-label" for="levelBase">Tier 1 requirement</label>
+              <input class="field" id="levelBase" type="number" min="0" step="1" value="2" />
+              <div class="range-header"><label for="hardnessRange">Hardness multiplier</label><output id="hardnessOutput">10.00×</output></div>
+              <input class="range" id="hardnessRange" type="range" min="0.01" max="20" step="0.01" value="10" />
+              <div class="formula-note clay-inset"><strong>Rule</strong><code>level(t) = base × hardness^(t − 1)</code><span>Example: 2, 20, 200, 2,000…</span></div>
+            </article>
+
+            <article class="config-card glass-panel hover-lift">
+              <div class="card-title"><span class="icon-box">$</span><div><h3>Buy price</h3><p>Tier 1 price plus a repeatable expression.</p></div></div>
+              <label class="field-label" for="priceBase">Tier 1 price</label>
+              <input class="field" id="priceBase" type="number" min="0" step="0.01" value="1000" />
+              <label class="field-label" for="priceFormula">Formula for tier 2+</label>
+              <input class="field code-field" id="priceFormula" type="text" value="prev * 2" spellcheck="false" />
+              <div class="formula-note clay-inset"><strong>Variables</strong><code>t, prev, base</code><span><b>Examples:</b> <code>prev*1.5</code>, <code>base*t^2</code>, <code>square(t)*base</code>, <code>root(prev,2)*100</code></span></div>
+              <p class="validation" id="priceFormulaValidation"></p>
+            </article>
+          </div>
+
+          <article class="config-card glass-panel hover-lift">
+            <div class="card-title"><span class="icon-box">◷</span><div><h3>Generation time</h3><p>Values are exported as configured by the uploaded file. 20 ticks equal 1 second.</p></div></div>
+            <div class="segmented three" data-segment-group="speedMode">
+              <button class="active ripple" type="button" data-value="fixed">Keep 600</button>
+              <button class="ripple" type="button" data-value="step">±0.1× per tier</button>
+              <button class="ripple" type="button" data-value="custom">Custom formula</button>
+            </div>
+            <div class="speed-options" id="speedFixedOptions">
+              <label class="field-label" for="speedBase">Fixed value</label>
+              <input class="field" id="speedBase" type="number" min="1" step="1" value="600" />
+            </div>
+            <div class="speed-options" id="speedStepOptions" hidden>
+              <div class="field-pair">
+                <div><label class="field-label" for="speedStep">Step size</label><input class="field" id="speedStep" type="number" min="0" step="0.01" value="0.1" /></div>
+                <div><label class="field-label" for="speedDirection">Direction</label><select class="field" id="speedDirection"><option value="decrease">Decrease / faster</option><option value="increase">Increase / slower</option></select></div>
+              </div>
+            </div>
+            <div class="speed-options" id="speedCustomOptions" hidden>
+              <label class="field-label" for="speedFormula">Formula for tier 2+</label>
+              <input class="field code-field" id="speedFormula" type="text" value="max(20, prev * 0.9)" spellcheck="false" />
+              <div class="formula-note clay-inset"><strong>Variables</strong><code>t, prev, base</code><span>Use <code>min()</code>, <code>max()</code>, <code>sqrt()</code>, <code>root()</code>, <code>square()</code> or <code>cube()</code>.</span></div>
+            </div>
+          </article>
+
+          <article class="config-card glass-panel hover-lift">
+            <div class="card-title split-title"><span class="icon-box">≡</span><div><h3>Generator lore placeholders</h3><p>Toggle the stat and drop lines that should be generated.</p></div><label class="switch compact"><input id="generatorLoreEnabled" type="checkbox" checked /><span></span></label></div>
+            <div class="placeholder-grid" id="generatorLorePlaceholders"></div>
+          </article>
+        </section>
+
+        <!-- Drop items -->
+        <section class="config-section" id="section-drops" data-section-panel="drops">
+          <div class="section-heading">
+            <div><span>Category 02</span><h2>Drop Item</h2></div>
+            <p>Add one or more generated drops. Chance is fixed at 100% as requested.</p>
+          </div>
+
+          <div class="locked-banner glass-panel"><span>🔒</span><div><strong>Drop chance: 100%</strong><p>This value is locked and written to every drop in every tier.</p></div><code>chance: 100.0</code></div>
+          <div id="dropItemsContainer" class="drop-list"></div>
+          <button class="button button-secondary add-drop ripple" id="addDropButton" type="button"><span>＋</span> Add another drop item</button>
+        </section>
+
+        <!-- Hologram -->
+        <section class="config-section" id="section-hologram" data-section-panel="hologram">
+          <div class="section-heading">
+            <div><span>Category 03</span><h2>Hologram</h2></div>
+            <p>Enable the display and edit the shared format for all generated tiers.</p>
+          </div>
+
+          <article class="config-card glass-panel hover-lift">
+            <div class="toggle-row hero-toggle">
+              <span><strong>Enable hologram</strong><small>The generated file will include the hologram section for each tier.</small></span>
+              <label class="switch large"><input id="hologramEnabled" type="checkbox" checked /><span></span></label>
+            </div>
+          </article>
+
+          <div id="hologramOptions">
+            <div class="card-grid two-col">
+              <article class="config-card glass-panel hover-lift">
+                <div class="card-title"><span class="icon-box">↕</span><div><h3>Display height</h3><p>Vertical offset above the generator.</p></div></div>
+                <input class="field" id="hologramHeight" type="number" min="0" step="0.01" value="2.25" />
+              </article>
+              <article class="config-card glass-panel hover-lift">
+                <div class="card-title"><span class="icon-box">⧉</span><div><h3>Tier synchronization</h3><p>Use one hologram format for every requested tier.</p></div></div>
+                <button class="button button-secondary ripple full-button" id="copyHologramButton" type="button">Copy this format to all tiers</button>
+              </article>
+            </div>
+
+            <article class="config-card glass-panel hover-lift">
+              <div class="card-title"><span class="icon-box">✦</span><div><h3>Hologram lines</h3><p>The generator name is always inserted as the first line.</p></div></div>
+              <div class="locked-line clay-inset"><span>1</span><code id="lockedHologramName">&#FFCC00&lWHEAT GENERATOR</code><small>Locked generator name</small></div>
+              <label class="field-label" for="hologramLines">Lines after the generator name</label>
+              <textarea class="field textarea code-field" id="hologramLines" rows="10" spellcheck="false">&#DDDDDDTier: &f%tier%
+
+&fSpawns: &#FFCC00%drop-name%
+
+&#FFCC00Next spawn will be in &f%next-spawn%/%spawn-time% &#FFCC00seconds!</textarea>
+              <div class="placeholder-grid small-grid" id="hologramPlaceholderButtons"></div>
+            </article>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="tier-preview-section reveal">
+      <div class="section-heading preview-heading">
+        <div><span>Calculated output</span><h2>Tier progression preview</h2></div>
+        <p>Review the first tiers before exporting.</p>
+      </div>
+      <div class="tier-cards" id="tierCards"></div>
+    </section>
+  </main>
+
+  <!-- Material picker -->
+  <div class="modal" id="materialModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-dialog material-dialog glass-panel" role="dialog" aria-modal="true" aria-labelledby="materialModalTitle">
+      <div class="modal-header">
+        <div><span>Minecraft 1.21.8</span><h2 id="materialModalTitle">Choose material</h2></div>
+        <button class="icon-button ripple" type="button" data-close-modal aria-label="Close">×</button>
+      </div>
+      <div class="picker-toolbar">
+        <label class="search-box clay-inset"><span>⌕</span><input id="materialSearch" type="search" placeholder="Search by name or Bukkit ID…" autocomplete="off" /></label>
+        <div class="segmented compact-segment" data-segment-group="pickerType"><button class="active" type="button" data-value="blocks">Blocks</button><button type="button" data-value="items">Items</button></div>
+      </div>
+      <div class="picker-meta"><span id="pickerResultCount">0 materials</span><span id="pickerLoadingState">Loading data…</span></div>
+      <div class="material-grid" id="materialGrid"></div>
+      <button class="button button-ghost full-button" id="loadMoreMaterials" type="button">Load more</button>
     </div>
+  </div>
 
-    <script src="script.js"></script>
+  <!-- YAML preview -->
+  <div class="modal" id="previewModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-preview></div>
+    <div class="modal-dialog yaml-dialog glass-panel" role="dialog" aria-modal="true" aria-labelledby="previewModalTitle">
+      <div class="modal-header">
+        <div><span>Live generated file</span><h2 id="previewModalTitle">tiers.yml</h2></div>
+        <div class="modal-actions">
+          <button class="button button-ghost ripple" id="copyYamlButton" type="button">Copy</button>
+          <button class="icon-button ripple" type="button" data-close-preview aria-label="Close">×</button>
+        </div>
+      </div>
+      <pre class="yaml-preview"><code id="yamlOutput"></code></pre>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"><span>✓</span><p>Done</p></div>
+
+  <template id="dropItemTemplate">
+    <article class="config-card glass-panel hover-lift drop-card">
+      <div class="drop-header">
+        <div class="card-title"><span class="icon-box">◆</span><div><h3>Drop item <b class="drop-number"></b></h3><p>100% chance · name follows selected item.</p></div></div>
+        <button class="icon-button danger remove-drop ripple" type="button" aria-label="Remove drop">×</button>
+      </div>
+      <div class="drop-layout">
+        <button class="material-select clay-card ripple drop-material-button" type="button">
+          <span class="material-thumb checker"><img class="drop-material-image" alt="" /></span>
+          <span class="material-copy"><small>Selected item</small><strong class="drop-material-name">Wheat</strong><code class="drop-material-id">WHEAT</code></span>
+          <span class="select-arrow">›</span>
+        </button>
+        <div class="drop-fields">
+          <div class="inline-preview clay-inset"><span>Drop name</span><code class="drop-name-preview">&#FFCC00&lWHEAT</code></div>
+          <div class="field-pair">
+            <div><label class="field-label">Tier 1 sell price</label><input class="field drop-sell-base" type="number" min="0" step="0.01" value="50" /></div>
+            <div><label class="field-label">Formula for tier 2+</label><input class="field code-field drop-sell-formula" type="text" value="prev * 2" spellcheck="false" /></div>
+          </div>
+          <div class="formula-note clay-inset"><strong>Variables</strong><code>t, prev, base</code><span>Examples: <code>prev*1.25</code>, <code>base*t^2</code>, <code>cube(t)*base</code>.</span></div>
+        </div>
+      </div>
+      <div class="fixed-lore clay-inset"><strong>Fixed lore</strong><code>- ''<br>- ' &7- &fSell price: &#33FF33%sell-price%$'<br>- ''</code></div>
+    </article>
+  </template>
+
+  <script src="js/app.js" defer></script>
 </body>
 </html>
